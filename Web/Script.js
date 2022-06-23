@@ -1,10 +1,10 @@
 const formElement = document.getElementById("saveTransaction");
 
 formElement.addEventListener("submit",(event)=>{
-    event.preventDafault();
-    let transactionDescription = document.getElementById("transctionDescription").value;
-    let transactionprice = document.getElementById("transcationprice").value;
-    let transaction={transctionDescription: transctionDescription, transcationprice: transcationprice}
+    event.preventDefault();
+    let transactionDescription = document.getElementById("transactionDescription").value;
+    let transactionprice = document.getElementById("transactionprice").value;
+    let transaction ={transactionDescription: transactionDescription, transactionprice: transactionprice}
     let transactionJson =JSON.stringify("transaction");
     //mandar la transactionJson datos al backend y guardarlos ahi
     fetch('http://localhost:3000/transactions',{
@@ -14,3 +14,4 @@ formElement.addEventListener("submit",(event)=>{
     })
    
 })
+fetch('http://localhost:3000/transactions').then(x =>x.json()).then(console.log)

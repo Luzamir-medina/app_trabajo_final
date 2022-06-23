@@ -3,7 +3,7 @@ const cors  = require('cors')
 
 const app = express()
 const port = 3000
-
+let transactionsArr =[]
 //#region
 app.use(
     express.urlencoded({
@@ -21,12 +21,16 @@ app.use(cors());
  //#region 
 // cuando te hagan un get http://localhost:3000/transactions
 app.get('/transactions',(req, res)=> {
-    res.send('me hicieron un get a app transactions')
+    res.send(JSON.stringify(transactionsArr));
 })
 // cuando te hagan un post  http://localhost:3000/transactions
 app.post('/transactions',(req, res)=>{
-    res.send('me hicieron un post')
-    //res.send('Me hicieron un post')
+    let transaction =req.body;
+    transactionsArr.push(transaction);
+    res.send(JSON.stringify("guardada"))
+    console.log(transactionsArr);
+  
+
 })
 
 app.listen(port,()=>{
